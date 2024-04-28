@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+        <title>Site de vente en ligne</title>
+        <link rel="shortcut icon" href="bild/logo.jpeg" type="bild/jpeg">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="contact.css">
+        <script type="module" src="script.js"></script>
+        <script src="htpps://kit.fontawesome.com/a980e88be8.js" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <section class="header-home">
+            <!--menu-->
+            <header>
+                <div class="logo_link">
+                    <a href="#" class="logo">KD Services</a>
+                    <div class="menu_link">
+                        <a href="indexn.html">Home</a>
+                        <a href="service.html">Service</a>
+                        <a href="project.html">Project</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">Blog</a>
+                    </div>
+                </div>
+
+                <!--responsive menu-->
+                <div class="sidebar" id="mySidebar">
+                    <div class="closebtn" onclick="closeNav()">
+                        <i class="fa-solid fa-circle-xmark fermer"></i>
+                        <img src="" alt="">
+                    </div>
+                    <a href="indexn.html" class="active">Home</a>
+                    <a href="service.html" class="active">Service</a>
+                    <a href="project.html" class="active">Project</a>
+                    <a href="#" class="active">Contact Us</a>
+                    <a href="#" class="active">Blog</a>
+                    <a href="login.html" class="active">Login</a>
+                    <a href="#" class="active">Sign Up</a>
+                </div>
+                    
+                <div id="main">
+                    <button class="openbtn" onclick="openNav()">
+                        <img src="" alt="">
+                        <i class="fa-sharp fa-solid fa-bars ouvrir"></i>
+                        Menu
+                    </button>
+                </div>
+                <!--responsive menu-->
+
+
+                <div class="link_buttons">
+                    <a href="login.html" class="active">Login</a>
+                    <a href="#" class="active orange_link">Sign Up</a>
+                </div>
+            </header>
+            <!--menu-->
+        <header>
+            <h1 class="contacth1">Contactez-nous</h1>
+        </header>
+        <div class="container">
+            <form id="contact-form" action="mailto:kdservice237@gmail.com" method="post" enctype="text/plain">
+                <label for="name">Nom :</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="prename">Prenom :</label>
+                <input type="text" id="prename" name="prename" required>
+
+                <label for="tel">Telephone :</label>
+                <input type="text" id="tel" name="tel" required>
+                
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message :</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit" class="contact-button">Envoyer</button>
+            </form>
+            <div id="response"></div>
+        </div>
+    </body>
+    <footer>
+        <div class="footer-content">
+            <h1>KD Services</h1>
+            <p>Tous droits réservés. | Politique de confidentialité | Conditions générales de location</p>
+            <h4>Contacter nous</h4>
+            <ul class="socials">
+                <li><a target="_blank" href="bild/facebook.png" class="iLink-icone">
+                    <img src="bild/facebook.png" alt="facebook"></a>
+                </li>
+                <li><a target="_blank" href="bild/instagram.png" class="iLink-icone">
+                    <img src="bild/instagram.png" alt="instagram"></a>
+                </li>
+                <li><a target="_blank" href="bild/twitter.png" class="iLink-icone">
+                    <img src="bild/twitter.png" alt="twitter" ></a>
+                </li>
+                <li><a target="_blank" href="bild/youtube.png" class="iLink-icone">
+                    <img src="bild/youtube.png" alt="youtube"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy;2023 Jess Dev. Designed by <span>jess</span></p>
+        </div>
+
+    </footer>
+</html>

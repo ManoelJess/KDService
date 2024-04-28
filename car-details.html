@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="de-de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+        <title>Site de vente en ligne</title>
+        <link rel="shortcut icon" href="bild/logo.jpeg" type="bild/jpeg">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="car-details.css">
+        <script type="module" src="script.js"></script>
+        <script src="htpps://kit.fontawesome.com/a980e88be8.js" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <section class="header-home">
+            <!--menu-->
+            <header>
+                <div class="logo_link">
+                    <a href="#" class="logo">KD Services</a>
+                    <div class="menu_link">
+                        <a href="indexn.html">Home</a>
+                        <a href="service.html">Service</a>
+                        <a href="project.html">Project</a>
+                        <a href="contact.html">Contact Us</a>
+                        <a href="#">Blog</a>
+                    </div>
+                </div>
+
+                <!--responsive menu-->
+                <div class="sidebar" id="mySidebar">
+                    <div class="closebtn" onclick="closeNav()">
+                        <i class="fa-solid fa-circle-xmark fermer"></i>
+                        <img src="" alt="">
+                    </div>
+                    <a href="indexn.html">Home</a>
+                    <a href="service.html">Service</a>
+                    <a href="project.html">Project</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Login</a>
+                    <a href="#">Sign Up</a>
+                </div>
+                    
+                <div id="main">
+                    <button class="openbtn" onclick="openNav()">
+                        <img src="" alt="">
+                        <i class="fa-sharp fa-solid fa-bars ouvrir"></i>
+                        Menu
+                    </button>
+                </div>
+                <!--responsive menu-->
+
+
+                <div class="link_buttons">
+                    <a href="#">Login</a>
+                    <a href="#" class="orange_link">Sign Up</a>
+                </div>
+            </header>
+            <!--menu-->
+
+        <!--Decoration-->
+        <section class="decoration">
+            <h1>Détails de la voiture</h1>
+            <div id="car-images" class="car-images-container">
+                <img id="car-image" src="bild/voiture1a.jpeg" alt="Car Image">
+            </div>
+            <i id="prevButton" class="fas fa-chevron-left" onclick="prevImage()"></i>
+            <i id="nextButton" class="fas fa-chevron-right" onclick="nextImage()"></i>
+            <div id="car-details" class="car-details-container">
+                <!-- Les informations sur la voiture seront affichées ici -->
+            </div>
+
+            <div class="contact-buttons">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kdservice237@gmail.com" target="_blank" class="contact-button">Contacter par email</a>
+                <a href="tel:+237694882540" class="contact-button">Contacter par téléphone</a>
+                <a href="https://api.whatsapp.com/send?phone=+237699658189" class="contact-button">Contacter via WhatsApp</a>
+            </div>
+        </section>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const carId = parseInt(urlParams.get('id'));
+            let currentImageIndex = 0;
+
+            function showCarDetails(carId) {
+                let carDetails = {};
+
+                if (carId === 1) {
+                    carDetails = {
+                        name: "Toyota Corolla",
+                        engine: "4 cylindres en ligne",
+                        power: "139 chevaux",
+                        transmission: "Boîte de vitesses automatique à variation continue (CVT)",
+                        fuelConsumption: "Environ 7,1 L/100km en ville et 5,8 L/100km sur autoroute",
+                        images: ["bild/voiture1a.jpeg", "bild/voiture1b.jpeg", "bild/voiture1c.jpeg"]
+                    };
+                } else if (carId === 2) {
+                    carDetails = {
+                        name: "Volkswagen Golf",
+                        engine: "4 cylindres turbo de 1,4 litre",
+                        power: "147 chevaux",
+                        transmission: "Boîte de vitesses automatique à 8 vitesses",
+                        fuelConsumption: "Environ 7,8 L/100km en ville et 5,8 L/100km sur autoroute",
+                        images: ["bild/voiture2a.jpeg", "bild/voiture2b.jpeg", "bild/voiture2c.jpeg"]
+                    };
+                }
+
+                const carImagesContainer = document.getElementById("car-images");
+                carImagesContainer.innerHTML = "";
+                carDetails.images.forEach((image, index) => {
+                    const img = document.createElement("img");
+                    img.src = image;
+                    img.classList.add("car-image");
+                    img.style.display = index === currentImageIndex ? "block" : "none"; 
+                    carImagesContainer.appendChild(img);
+                });
+
+                const prevButton = document.getElementById("prevButton");
+                const nextButton = document.getElementById("nextButton");
+
+                function updateButtons() {
+                    prevButton.disabled = currentImageIndex === 0;
+                    nextButton.disabled = currentImageIndex === carDetails.images.length - 1;
+                }
+
+                updateButtons();
+
+                prevButton.addEventListener("click", () => {
+                    currentImageIndex = Math.max(0, currentImageIndex - 1);
+                    updateButtons();
+                    updateImage();
+                });
+
+                nextButton.addEventListener("click", () => {
+                    currentImageIndex = Math.min(carDetails.images.length - 1, currentImageIndex + 1);
+                    updateButtons();
+                    updateImage();
+                });
+
+                function updateImage() {
+                    const images = document.querySelectorAll(".car-image");
+                    images.forEach((image, index) => {
+                        if (index === currentImageIndex) {
+                            image.style.display = "block";
+                        } else {
+                            image.style.display = "none";
+                        }
+                    });
+                }
+                const carDetailsContainer = document.getElementById("car-details");
+                carDetailsContainer.innerHTML = `
+                    <p>Nom: ${carDetails.name}</p>
+                    <p>Moteur: ${carDetails.engine}</p>
+                    <p>Puissance: ${carDetails.power}</p>
+                    <p>Transmission: ${carDetails.transmission}</p>
+                    <p>Consommation de carburant: ${carDetails.fuelConsumption}</p>
+                `;
+            }
+
+
+            showCarDetails(carId);
+        </script>
+        <!--Footer-->
+        <footer>
+            <div class="footer-content">
+                <h1>KD Services</h1>
+                <p>Tous droits réservés. | Politique de confidentialité | Conditions générales de location</p>
+                <h4>Contacter nous</h4>
+                <ul class="socials">
+                    <li><a target="_blank" href="bild/facebook.png" class="iLink-icone">
+                        <img src="bild/facebook.png" alt="facebook"></a>
+                    </li>
+                    <li><a target="_blank" href="bild/instagram.png" class="iLink-icone">
+                        <img src="bild/instagram.png" alt="instagram"></a>
+                    </li>
+                    <li><a target="_blank" href="bild/twitter.png" class="iLink-icone">
+                        <img src="bild/twitter.png" alt="twitter" ></a>
+                    </li>
+                    <li><a target="_blank" href="bild/youtube.png" class="iLink-icone">
+                        <img src="bild/youtube.png" alt="youtube"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy;2023 Jess Dev. Designed by <span>jess</span></p>
+            </div>
+
+        </footer>
+        <!--Footer-->
+    </body>
+</html>
